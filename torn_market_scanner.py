@@ -2,7 +2,16 @@
 # Torn Market Scanner - Сканування ринку міста (Item Market)
 # Використовує ID предметів з вашого JSON файлу
 # Збирає ВСІ пропозиції через пагінацію та фільтрує нереальні ціни
+import os
 
+# Перевіряємо, чи є API_KEY в змінних оточення (для GitHub Actions)
+if 'API_KEY' in os.environ:
+    API_KEY = os.environ['API_KEY']
+    print("✅ API ключ завантажено з GitHub Secrets")
+else:
+    # Для локального тестування (якщо запускаєте не на GitHub)
+    API_KEY = "yGfG9P4pDhU97zAE"
+    print("⚠️ Використовую API ключ з файлу (тільки для тестування!)")
 import requests
 import time
 import json
@@ -14,7 +23,6 @@ from typing import Dict, List, Optional, Tuple
 import sys
 
 # ============ КОНФІГУРАЦІЯ ============
-API_KEY = "yGfG9P4pDhU97zAE"  # Ваш Torn API ключ
 TELEGRAM_TOKEN = "8632913737:AAHjO0kGCP8dbvSvuZXQWEDgQ67q_7Na8Sk"
 TELEGRAM_CHAT_ID = "ваш_chat_id_сюди"  # Отримаєте пізніше
 
@@ -682,6 +690,8 @@ def main_scan():
     
     # Експортуємо в CSV
     export_to_csv()
+
+"Read API key from env"
 
 # ============ ТОЧКА ВХОДУ ============
 if __name__ == "__main__":
