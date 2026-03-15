@@ -10,7 +10,7 @@ if 'API_KEY' in os.environ:
     print("✅ API ключ завантажено з GitHub Secrets")
 else:
     # Для локального тестування (якщо запускаєте не на GitHub)
-    API_KEY = "yGfG9P4pDhU97zAE"
+    API_KEY = "yGfG9P4pDhU97zA"
     print("⚠️ Використовую API ключ з файлу (тільки для тестування!)")
 import requests
 import time
